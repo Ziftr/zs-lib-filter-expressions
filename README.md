@@ -12,7 +12,7 @@ There is an emphasizes simplicity over performance since expressions are not cal
 
 Expressions support the following opperators: `==`, `!=`, `>`, `<`, `>=`, `<=`.
 
-You can sepperate expression using `AND` and `OR` and also group expressions with `(` and `)`. The order of opperations when missing `AND`/`OR` is *undefined behavior* so when mixing the two it is best to use parenthesis for disambiguation.
+You can sepperate expression using `AND` and `OR` and also group expressions with `(` and `)`. The order of opperations when mixing `AND`/`OR` is *undefined behavior* so best practice is to use parenthesis for disambiguation.
 
 For more information, see tests folder for examples. Or [the workflows page on confluence](https://airtank.atlassian.net/wiki/spaces/ENGINEERIN/pages/135692289/Workflows#Filters).
 
