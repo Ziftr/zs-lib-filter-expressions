@@ -1,5 +1,7 @@
 # Expression Parser
 
+![Tests](https://github.com/Ziftr/zs-lib-filter-expressions/workflows/Tests/badge.svg)
+
 A tiny Node.js expression parser library designed to be embedded in other ZiftrShop projects.
 
 It contains no external dependencies at runtime and compiles and compresses to less than 3kb
