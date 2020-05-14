@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "dist": "mocha && rollup --file dist/zs-expression-lib.js --format umd --plugin commonjs --plugin terser --name ZiftrshopExpressions -- src/index.js"
+    "dist": "mocha && rollup --file dist/zs-expression-lib.js --format iife --plugin commonjs --plugin terser --name ZiftrshopExpressions --exports named -- src/index.js"
   },
   "repository": {
     "type": "git",

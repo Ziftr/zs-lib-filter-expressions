@@ -7,3 +7,23 @@ It contains no external dependencies at runtime and compiles and compresses to l
 There is an emphasizes simplicity over performance since expressions are not called often and do not need to be fast.
 
 See tests folder for examples. Or [the workflows page on confluence](https://airtank.atlassian.net/wiki/spaces/ENGINEERIN/pages/135692289/Workflows#Filters).
+
+## Installing
+
+```
+npm install --save github:Ziftr/zs-lib-filter-expressions
+```
+
+## Running Tests
+
+```
+npm run test
+```
+
+## Packaging
+
+```
+npm run dist
+```
+
+This will create a file `dist/zs-expression-lib.js` that is sutable for user in browsers or to copy and paste (embed) in a Node.js. It will assign the library to a variable called `ZiftrshopExpressions`.
