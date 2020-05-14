@@ -1,0 +1,13 @@
+const Tokenizer = require('../src/Tokenizer').Tokenizer;
+const Parser = require('../src/Parser').Parser;
+const ParserError = require('../src/ParserError').ParserError;
+
+function exprEval(expr, context) {
+  let tokenizer = new Tokenizer(expr);
+  let parser = new Parser(tokenizer);
+  let tree = parser.parse();
+
+  return tree.reduce(context);
+}
+
+module.exports = { eval: exprEval, Tokenizer, Parser, ParserError };

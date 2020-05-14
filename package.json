@@ -1,0 +1,27 @@
+{
+  "name": "zs-lib-filter-expressions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "dist": "mocha && rollup --file dist/zs-expression-lib.js --format umd --plugin commonjs --plugin terser --name ZiftrshopExpressions -- src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ziftr/zs-lib-filter-expressions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ziftr/zs-lib-filter-expressions/issues"
+  },
+  "homepage": "https://github.com/Ziftr/zs-lib-filter-expressions#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.2",
+    "rollup": "^2.10.0",
+    "rollup-plugin-terser": "^5.3.0"
+  }
+}
