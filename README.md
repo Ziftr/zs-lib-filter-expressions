@@ -8,7 +8,14 @@ It contains no external dependencies at runtime and compiles and compresses to l
 
 There is an emphasizes simplicity over performance since expressions are not called often and do not need to be fast.
 
-See tests folder for examples. Or [the workflows page on confluence](https://airtank.atlassian.net/wiki/spaces/ENGINEERIN/pages/135692289/Workflows#Filters).
+# Syntax
+
+Expressions support the following opperators: `==`, `!=`, `>`, `<`, `>=`, `<=`.
+
+You can sepperate expression using `AND` and `OR` and also group expressions with `(` and `)`. The order of opperations when missing `AND`/`OR` is *undefined behavior* so when mixing the two it is best to use parenthesis for disambiguation.
+
+For more information, see tests folder for examples. Or [the workflows page on confluence](https://airtank.atlassian.net/wiki/spaces/ENGINEERIN/pages/135692289/Workflows#Filters).
+
 
 ## Installing
 
@@ -28,4 +35,4 @@ npm run test
 npm run dist
 ```
 
-This will create a file `dist/zs-expression-lib.js` that is sutable for user in browsers or to copy and paste (embed) in a Node.js. It will assign the library to a variable called `ZiftrshopExpressions`.
+This will create a file `dist/zs-expression-lib.js` that is suitable for user in browsers or to copy and paste (embed) in a Node.js. It will assign the library to a variable called `ZiftrshopExpressions`.
