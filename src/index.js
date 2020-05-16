@@ -9,5 +9,5 @@ module.exports.eval = function (expr, context) {
   let parser = new Parser(tokenizer);
   let tree = parser.parse();
 
-  return tree.reduce(context);
+  return !!tree.reduce(context);
 }

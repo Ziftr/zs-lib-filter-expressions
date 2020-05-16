@@ -320,4 +320,197 @@ describe('Expression integration tests', function() {
     });
   });
 
+  const test20 = 'x';
+
+  describe(test20, function() {
+    it('should return true when value is non-empty string', function() {
+      let res = integrationTest(test20, { x: 't' });
+      expect(res).to.equal(true);
+    });
+    it('should return true when value is non-zero number', function() {
+      let res = integrationTest(test20, { x: -1 });
+      expect(res).to.equal(true);
+    });
+    it('should return true when value is boolean true', function() {
+      let res = integrationTest(test20, { x: true });
+      expect(res).to.equal(true);
+    });
+    it('should return true when value is boolean object', function() {
+      let res = integrationTest(test20, { x: {} });
+      expect(res).to.equal(true);
+    });
+    it('should return false when value is empty string', function() {
+      let res = integrationTest(test20, { x: '' });
+      expect(res).to.equal(false);
+    });
+    it('should return false when value is zero', function() {
+      let res = integrationTest(test20, { x: 0 });
+      expect(res).to.equal(false);
+    });
+    it('should return false when value is boolean false', function() {
+      let res = integrationTest(test20, { x: false });
+      expect(res).to.equal(false);
+    });
+  });
+
+  const test21 = 'x AND y';
+
+  describe(test21, function() {
+    it('should return true when both are true', function() {
+      let res = integrationTest(test21, { x: true, y: true });
+      expect(res).to.equal(true);
+    });
+    it('should return false when x is false', function() {
+      let res = integrationTest(test21, { x: false, y: true });
+      expect(res).to.equal(false);
+    });
+    it('should return false when y is false', function() {
+      let res = integrationTest(test21, { x: true, y: false });
+      expect(res).to.equal(false);
+    });
+  });
+
+  const test22 = 'x AND (y)';
+
+  describe(test22, function() {
+    it('should return true when both are true', function() {
+      let res = integrationTest(test22, { x: true, y: true });
+      expect(res).to.equal(true);
+    });
+    it('should return false when x is false', function() {
+      let res = integrationTest(test22, { x: false, y: true });
+      expect(res).to.equal(false);
+    });
+    it('should return false when y is false', function() {
+      let res = integrationTest(test22, { x: true, y: false });
+      expect(res).to.equal(false);
+    });
+  });
+
+  const test23 = 'x > 3';
+
+  describe(test23, function() {
+    it('should return true when x is greater than 3', function() {
+      let res = integrationTest(test23, { x: 4 });
+      expect(res).to.equal(true);
+    });
+    it('should return false when x is less than 3', function() {
+      let res = integrationTest(test23, { x: 2 });
+      expect(res).to.equal(false);
+    });
+  });
+
+  const test24 = 'x AND y > 3';
+
+  describe(test24, function() {
+    it('should return true when x is true and y is greater than 3', function() {
+      let res = integrationTest(test24, { x: true, y: 4 });
+      expect(res).to.equal(true);
+    });
+    it('should return false when x is false and y is greater than 3', function() {
+      let res = integrationTest(test24, { x: false, y: 4 });
+      expect(res).to.equal(false);
+    });
+    it('should return false when y is less than 3', function() {
+      let res = integrationTest(test24, { x: true, y: 2 });
+      expect(res).to.equal(false);
+    });
+  });
+
+  const test25 = 'x == "yes"';
+
+  describe(test25, function() {
+    it('should return true when x is "yes"', function() {
+      let res = integrationTest(test25, { x: "yes" });
+      expect(res).to.equal(true);
+    });
+    it('should return false when x is not "yes"', function() {
+      let res = integrationTest(test25, { x: "no" });
+      expect(res).to.equal(false);
+    });
+  });
+
+  const test26 = '"no" == "yes"';
+
+  describe(test26, function() {
+    it('should return false', function() {
+      let res = integrationTest(test26, {});
+      expect(res).to.equal(false);
+    });
+  });
+
+  const test27 = '"yes" == "yes"';
+
+  describe(test27, function() {
+    it('should return true', function() {
+      let res = integrationTest(test27, {});
+      expect(res).to.equal(true);
+    });
+  });
+
+  const test28 = '"yes" == "yes\'';
+
+  describe(test28, function() {
+    it('should throw a ParserError exception', function() {
+      expect(function(){
+        integrationTest(test28, {});
+      }).to.throw('unexpected token');
+    });
+  });
+
+
+  const test29 = '"yes" == \'yes\'';
+
+  describe(test29, function() {
+    it('should return true', function() {
+      let res = integrationTest(test29, {});
+      expect(res).to.equal(true);
+    });
+  });
+
+  const test30 = '"The test\'s apostrophy"';
+
+  describe(test30, function() {
+    it('should return true', function() {
+      let res = integrationTest(test30, {});
+      expect(res).to.equal(true);
+    });
+  });
+
+  const test31 = '"20" > 100';
+
+  describe(test31, function() {
+    it('should return false', function() {
+      let res = integrationTest(test31, {});
+      expect(res).to.equal(false);
+    });
+  });
+
+  const test32 = '1.2 > 1.1';
+
+  describe(test32, function() {
+    it('should return true', function() {
+      let res = integrationTest(test32, {});
+      expect(res).to.equal(true);
+    });
+  });
+
+  const test33 = '10.2 > 0.10';
+
+  describe(test33, function() {
+    it('should return true', function() {
+      let res = integrationTest(test33, {});
+      expect(res).to.equal(true);
+    });
+  });
+
+  const test34 = '0.2 > 02';
+
+  describe(test34, function() {
+    it('should throw a ParserError exception', function() {
+      expect(function(){
+        integrationTest(test34, {});
+      }).to.throw('unexpected token');
+    });
+  });
 });

@@ -6,22 +6,7 @@ class AstNode {
   }
 
   walk(node, context) {
-    if (node === undefined) {
-      return;
-    }
-
-    if (typeof node == 'string') {
-      let path = node.split('.');
-
-      let obj = context, k;
-      while (obj && (k = path.shift())) {
-        obj = obj[k];
-      }
-
-      return obj;
-    }
-
-    return node.reduce(context);
+    return node && node.reduce(context);
   }
 
   reduce(context) {

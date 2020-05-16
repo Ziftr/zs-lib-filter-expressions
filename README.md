@@ -4,7 +4,7 @@
 
 A tiny Node.js expression parser library designed to be embedded in other ZiftrShop projects.
 
-It contains no external dependencies at runtime and compiles and compresses to less than 3kb
+It contains no external dependencies at runtime and compiles and compresses to ~3kb.
 
 There is an emphasizes simplicity over performance since expressions are not called often and do not need to be fast.
 

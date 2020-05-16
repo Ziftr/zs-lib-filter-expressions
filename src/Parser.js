@@ -33,7 +33,7 @@ class Parser {
       return $2;
     }
 
-    if ($1.type != 'LITR') {
+    if (!$1.hasValue()) {
       throw new ParserError('unexpected token', this.tokenizer.str, $1.pos);
     }
 
@@ -43,11 +43,11 @@ class Parser {
       $2 = this.tokenizer.next();
       let $3 = this.tokenizer.next();
 
-      if ($3.type != 'LITR') {
+      if (!$3.hasValue()) {
         throw new ParserError('unexpected token', this.tokenizer.str, $3.pos);
       }
 
-      return new AstNode($2.value, $1.value, $3.value);
+      return new AstNode($2.value, $1, $3);
     }
 
     return $1;
@@ -59,7 +59,9 @@ class Parser {
     while ( (t = this.tokenizer.peek()) ) {
 
       switch( t.type ) {
-      case 'LITR':
+      case 'IDEN':
+      case 'STR':
+      case 'NUM':
       case 'GRP_STR':
         $ = this.expr();
         break;
