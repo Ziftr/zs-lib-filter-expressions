@@ -9,8 +9,8 @@ class Tokenizer {
       BOOL: 'AND|OR',      // Boolean expressions
       CMP: '[<>]=?|[!=]=', // Comparison ops
       STR: '(?<QUOTE>["\'])(?<STR_INNER>.*?)\\k<QUOTE>', // String
-      IDEN: '[A-Za-z][A-Za-z.0-9]*',  // Identifier
-      NUM: '((0\.|[1-9][0-9]*\.)[0-9]+)|[1-9][0-9]*',  // Numbers
+      IDEN: '[A-Za-z][A-Za-z.0-9]*', // Identifier
+      NUM: '((0\.|[1-9][0-9]*\.)[0-9]+)|[1-9][0-9]*', // Numbers
       WHITESPACE: '\\s+',  // Whitepace (ignore)
       INVD: '.',           // Invalid (error)
     };
@@ -52,9 +52,9 @@ class Tokenizer {
           let tt = this.types[t];
           if (m.groups[tt]) {
             switch (tt) {
-            case 'STR': return new Token(this.types[t], m.groups.STR_INNER, m.index);
-            case 'NUM': return new Token(this.types[t], parseFloat(m.groups.NUM), m.index);
-            default: return new Token(this.types[t], m[0], m.index);
+            case 'STR': return new Token(tt, m.groups.STR_INNER, m.index);
+            case 'NUM': return new Token(tt, parseFloat(m.groups.NUM), m.index);
+            default: return new Token(tt, m[0], m.index);
             }
           }
         }
