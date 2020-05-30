@@ -9,7 +9,7 @@ class Tokenizer {
       BOOL: 'AND|OR',      // Boolean expressions
       CMP: '[<>]=?|[!=]=', // Comparison ops
       STR: '(?<QUOTE>["\'])(?<STR_INNER>.*?)\\k<QUOTE>', // String
-      IDEN: '[A-Za-z][A-Za-z.0-9]*', // Identifier
+      IDEN: '[A-Za-z][A-Za-z._0-9]*', // Identifier
       NUM: '((0\.|[1-9][0-9]*\.)[0-9]+)|[1-9][0-9]*', // Numbers
       WHITESPACE: '\\s+',  // Whitepace (ignore)
       INVD: '.',           // Invalid (error)

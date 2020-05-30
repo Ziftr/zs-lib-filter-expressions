@@ -513,4 +513,13 @@ describe('Expression integration tests', function() {
       }).to.throw('unexpected token');
     });
   });
+
+  const test35 = 'my_test == 3';
+
+  describe(test35, function() {
+    it('should return true', function() {
+      let res = integrationTest(test35, {my_test: 3});
+      expect(res).to.equal(true);
+    });
+  });
 });
