@@ -1,8 +1,8 @@
 # Expression Parser
 
-![Tests](https://github.com/Ziftr/zs-lib-filter-expressions/workflows/Tests/badge.svg?branch=master)
-
 A tiny Node.js expression parser library designed to be embedded in other ZiftrShop projects.
+
+![Tests](https://github.com/Ziftr/zs-lib-filter-expressions/workflows/Tests/badge.svg?branch=master)
 
 It contains no external dependencies at runtime and compiles and compresses to ~3kb.
 
@@ -14,13 +14,10 @@ Expressions support the following opperators: `==`, `!=`, `>`, `<`, `>=`, `<=`.
 
 You can sepperate expression using `AND` and `OR` and also group expressions with `(` and `)`. The order of opperations when mixing `AND`/`OR` is *undefined behavior* so best practice is to use parenthesis for disambiguation.
 
-For more information, see tests folder for examples. Or [the workflows page on confluence](https://airtank.atlassian.net/wiki/spaces/ENGINEERIN/pages/135692289/Workflows#Filters).
-
-
 ## Installing
 
 ```
-npm install --save github:Ziftr/zs-lib-filter-expressions
+npm install --save @ziftrshop/filter-expressions
 ```
 
 ## Running Tests
