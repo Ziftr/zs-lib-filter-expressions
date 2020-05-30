@@ -1,5 +1,5 @@
 {
-  "name": "zs-lib-filter-expressions",
+  "name": "zs-filter-expressions",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ziftr/zs-lib-filter-expressions.git"
+    "url": "git+https://github.com/ZiftrShop/zs-filter-expressions.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Ziftr/zs-lib-filter-expressions/issues"
+    "url": "https://github.com/ZiftrShop/zs-filter-expressions/issues"
   },
-  "homepage": "https://github.com/Ziftr/zs-lib-filter-expressions#readme",
+  "homepage": "https://github.com/ZiftrShop/zs-filter-expressions#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.1.0",
     "chai": "^4.2.0",
