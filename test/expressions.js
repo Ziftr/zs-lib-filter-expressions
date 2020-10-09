@@ -522,4 +522,25 @@ describe('Expression integration tests', function() {
       expect(res).to.equal(true);
     });
   });
+
+  const test36 = 'x1.val != true';
+
+  describe(test36, function() {
+    it('should return true when x1.val is false', function() {
+      let res = integrationTest(test36, { x1: {val: false} });
+      expect(res).to.equal(true);
+    });
+    it('should return false when x1.val is true', function() {
+      let res = integrationTest(test36, { x1: {val: true} });
+      expect(res).to.equal(false);
+    });
+    it('should return true when x1.val is undefined', function() {
+      let res = integrationTest(test36, { x1: {not_val: true} });
+      expect(res).to.equal(true);
+    });
+    it('should return true when x1 is undefined', function() {
+      let res = integrationTest(test36, {});
+      expect(res).to.equal(true);
+    });
+  });
 });
