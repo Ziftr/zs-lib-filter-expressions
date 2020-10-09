@@ -9,6 +9,12 @@ class Token {
 
   reduce(context) {
     if (this.type == 'IDEN') {
+      if (this.value === 'true') {
+        return true;
+      } else if (this.value === 'false') {
+        return false;
+      }
+
       let path = this.value.split('.');
 
       let obj = context, k;
