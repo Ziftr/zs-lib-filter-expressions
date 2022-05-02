@@ -9,9 +9,10 @@ class AstNode {
     return node && node.reduce(context);
   }
 
-  reduce(context) {
-    let left = this.walk(this.left, context);
-    let right = this.walk(this.right, context);
+  eval(left, right, context) {
+    if (Array.isArray(right)) {
+      return !!right.find(itm => this.eval(left, itm, context));
+    }
 
     switch (this.op) {
     case '==':  return left === right;
@@ -25,6 +26,17 @@ class AstNode {
     }
 
     return false;
+  }
+
+  reduce(context) {
+    let left = this.walk(this.left, context);
+    let right = this.walk(this.right, context);
+
+    if (Array.isArray(left)) {
+      return !!left.find(itm => this.eval(itm, right, context));
+    }
+
+    return this.eval(left, right, context);
   }
 }
 

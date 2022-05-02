@@ -7,6 +7,29 @@ class Token {
     this.pos = pos;
   }
 
+  pathWalk(obj, path) {
+    if (obj && path.length) {
+       if (Array.isArray(obj)) {
+         let result = obj
+           .map(itm => this.pathWalk(itm, [].concat(path)))
+           .filter(itm => itm !== undefined)
+           .reduce((acc, itm) => {
+             if (Array.isArray(itm)) {
+               return acc.concat(itm);
+             }
+             return acc.concat([itm]);
+           },[]);
+
+         return result;
+       }
+
+       let k = path.shift();
+       return this.pathWalk(obj[k], path);
+    }
+
+    return obj;
+  }
+
   reduce(context) {
     if (this.type == 'IDEN') {
       if (this.value === 'true') {
@@ -16,13 +39,7 @@ class Token {
       }
 
       let path = this.value.split('.');
-
-      let obj = context, k;
-      while (obj && (k = path.shift())) {
-        obj = obj[k];
-      }
-
-      return obj;
+      return this.pathWalk(context, path);
     }
     return this.value;
   }

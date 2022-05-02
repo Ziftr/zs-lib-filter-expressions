@@ -543,4 +543,134 @@ describe('Expression integration tests', function() {
       expect(res).to.equal(true);
     });
   });
+
+  // Item inside an object inside an array.
+  const test37 = 'array.inneritem';
+
+  describe(test37, function() {
+    it('should return true when array.inneritem exists and is true', function() {
+      let res = integrationTest(test37, { array: [{inneritem: true}] });
+      expect(res).to.equal(true);
+    });
+    it('should return true when array.inneritem exists and is true on an item not at the front of the array', function() {
+      let res = integrationTest(test37, { array: [
+        {x: true},
+        {inneritem: true},
+      ] });
+      expect(res).to.equal(true);
+    });
+    it('should return false when array.inneritem exists and is false', function() {
+      let res = integrationTest(test37, { array: [{inneritem: false}] });
+      expect(res).to.equal(false);
+    });
+    it('should return false when array.inneritem does not exist', function() {
+      let res = integrationTest(test37, { array: [{x: true}] });
+      expect(res).to.equal(false);
+    });
+  });
+
+  // Nested arrays.
+  const test38 = 'array.innerarray.inneritem';
+
+  describe(test38, function() {
+    it('should return true when array.innerarray.inneritem exists and is true', function() {
+      let res = integrationTest(test38, { array: [ { innerarray: [{inneritem: true}] } ] });
+      expect(res).to.equal(true);
+    });
+    it('should return true when array.inneritem exists and is true on an item not at the front of the array', function() {
+      let res = integrationTest(test38, { array: [ { innerarray: [
+        {x: true},
+        {inneritem: true},
+      ] } ] });
+      expect(res).to.equal(true);
+    });
+    it('should return false when array.inneritem exists and is false', function() {
+      let res = integrationTest(test38, { array: [ { innerarray: [{inneritem: false}] } ] });
+      expect(res).to.equal(false);
+    });
+    it('should return false when array.inneritem does not exist', function() {
+      let res = integrationTest(test38, { array: [ { innerarray: [{x: true}] } ] });
+      expect(res).to.equal(false);
+    });
+  });
+
+  // Left value is an array.
+  const test39 = 'array.inneritem > 20';
+
+  describe(test39, function() {
+    it('should return true when the first item in array.inneritem is greater than 20', function() {
+      let res = integrationTest(test39, { array: [{inneritem: 30}] });
+      expect(res).to.equal(true);
+    });
+    it('should return true when a later item in array.inneritem is greater than 20', function() {
+      let res = integrationTest(test39, { array: [
+        {x: true},
+        {inneritem: 30},
+        {inneritem: 15},
+      ] });
+      expect(res).to.equal(true);
+    });
+    it('should return false when no item in array.inneritem is greater than 20', function() {
+      let res = integrationTest(test39, { array: [
+        {inneritem: 10},
+        {inneritem: 15},
+      ] });
+      expect(res).to.equal(false);
+    });
+    it('should return false when array.inneritem does not exist', function() {
+      let res = integrationTest(test39, { array: [{x: true}] });
+      expect(res).to.equal(false);
+    });
+  });
+
+  // Right value is an array.
+  const test40 = '20 <= array.inneritem';
+
+  describe(test40, function() {
+    it('should return true when the first item in array.inneritem is greater than 20', function() {
+      let res = integrationTest(test40, { array: [{inneritem: 30}] });
+      expect(res).to.equal(true);
+    });
+    it('should return true when a later item in array.inneritem is greater than 20', function() {
+      let res = integrationTest(test40, { array: [
+        {x: true},
+        {inneritem: 30},
+        {inneritem: 15},
+      ] });
+      expect(res).to.equal(true);
+    });
+    it('should return false when no item in array.inneritem is greater than 20', function() {
+      let res = integrationTest(test40, { array: [
+        {inneritem: 10},
+        {inneritem: 15},
+      ] });
+      expect(res).to.equal(false);
+    });
+    it('should return false when array.inneritem does not exist', function() {
+      let res = integrationTest(test40, { array: [{x: true}] });
+      expect(res).to.equal(false);
+    });
+  });
+
+  // Two arrays being compared. Unlikely but we don't want undefined behavior.
+  const test41 = 'arrayA > arrayB';
+
+  describe(test41, function() {
+    it('should return true when any value of arrayA is greater than any value in arrayB', function() {
+      let res = integrationTest(test41, {
+        arrayA: [ 1, 20, 3 ],
+        arrayB: [ 10, 12, 13 ],
+      });
+      expect(res).to.equal(true);
+    });
+
+    it('should return false when no values of arrayA are greater than any value in arrayB', function() {
+      let res = integrationTest(test41, {
+        arrayA: [ 1, 2, 3 ],
+        arrayB: [ 10, 12, 13 ],
+      });
+      expect(res).to.equal(false);
+    });
+  });
+
 });
